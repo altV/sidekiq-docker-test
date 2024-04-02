@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sidekiq -r./app/environment.rb

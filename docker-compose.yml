@@ -1,0 +1,28 @@
+services:
+  redis:
+    image: 'redis:7-alpine'
+    ports:
+      - 6379
+    volumes:
+      - ./tmp/redis_data:/var/lib/redis/data
+
+  worker:
+    image: int1
+    build: .
+    environment:
+      REDIS_URL: redis://redis
+    links:
+      - redis
+    entrypoint: sidekiq -r /app/app/environment.rb
+
+  web:
+    image: int1
+    build: .
+    environment:
+      REDIS_URL: redis://redis
+    links:
+      - redis
+    entrypoint: rackup -r./app/environment config.ru -p 3000
+    ports:
+      - 3000:3000
+

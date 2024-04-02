@@ -10,6 +10,18 @@ class Application < Sinatra::Base
     content_type :json
     {health: :ok}.to_json
   end
+
+
+  post '/google' do
+
+
+    res = Curl.get("https://www.google.com/") {|http|
+      http.timeout = 2
+    }
+    res.body
+    File.write './tmp/google.html', res.body
+
+  end
 end
 
 

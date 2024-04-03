@@ -9,4 +9,4 @@ RUN bundle
 EXPOSE 3000
 
 # ENTRYPOINT "rackup -r./main config.ru -p 3000"
-CMD ["rackup","-r./app/main","config.ru","-p","3000"]
+CMD ["bin/launch_web","-o","0.0.0.0"]

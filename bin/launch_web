@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rackup -r./app/environment config.ru -p 3000
+rackup -r./app/environment config.ru -p 3000 "$@"
